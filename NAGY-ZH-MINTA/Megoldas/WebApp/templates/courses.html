@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Courses</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Students</th>
+            <th>API Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.code }}</td>
+            <td>
+                {% if course.students %}
+                <ul>
+                    {% for student in course.students %}
+                    <li>{{ student.name }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                No students
+                {% endif %}
+            </td>
+            <td>
+                <a href="/students/{{ course.code }}" target="_blank">View Students API</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
